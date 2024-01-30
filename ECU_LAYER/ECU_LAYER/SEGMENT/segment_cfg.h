@@ -1,16 +1,15 @@
 /* 
- * File:   std_libraries.h
+ * File:   segment_cfg.h
  * Author: gaming3
  *
- * Created on October 7, 2023, 9:59 PM
+ * Created on December 8, 2023, 3:07 AM
  */
 
-#ifndef STD_LIBRARIES_H
-#define	STD_LIBRARIES_H
+#ifndef SEGMENT_CFG_H
+#define	SEGMENT_CFG_H
+
 /*section : Includes  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 /*section : Macro Declaration  */
 
 
@@ -25,4 +24,5 @@
 
 /*section :  Functions Declaration  */
 
-#endif	/* STD_LIBRARIES_H */
+#endif	/* SEGMENT_CFG_H */
+

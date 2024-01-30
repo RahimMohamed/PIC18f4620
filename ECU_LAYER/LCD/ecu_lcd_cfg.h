@@ -1,16 +1,16 @@
 /* 
- * File:   std_libraries.h
+ * File:   ecu_lcd_cfg.h
  * Author: gaming3
  *
- * Created on October 7, 2023, 9:59 PM
+ * Created on January 28, 2024, 1:38 PM
  */
 
-#ifndef STD_LIBRARIES_H
-#define	STD_LIBRARIES_H
+#ifndef ECU_LCD_CFG_H
+#define	ECU_LCD_CFG_H
+
+
 /*section : Includes  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 /*section : Macro Declaration  */
 
 
@@ -25,4 +25,5 @@
 
 /*section :  Functions Declaration  */
 
-#endif	/* STD_LIBRARIES_H */
+#endif	/* ECU_LCD_CFG_H */
+

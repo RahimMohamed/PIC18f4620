@@ -1,0 +1,143 @@
+/* 
+ * File:   application.c
+ * Author: Ahmed.Elghafar
+ * https://www.linkedin.com/in/ahmedabdelghafarmohammed/
+ * Created on November 28, 2020, 8:43 PM
+ */
+
+#include "main.h"
+
+
+Std_ReturnType ret=E_NOT_OK;
+
+uint_8 value=0;
+lcd_4bit_t lcd1={
+  .lcd_rs.direction=GPIO_OUTPUT,
+  .lcd_rs.logic=LOW,
+  .lcd_rs.port=PORTC_INDEX,
+  .lcd_rs.pin=GPIO_PIN0,
+  .lcd_en.direction=GPIO_OUTPUT,
+  .lcd_en.logic=LOW,
+  .lcd_en.port=PORTC_INDEX,
+  .lcd_en.pin=GPIO_PIN1,
+  .lcd_data[0].direction=GPIO_OUTPUT,
+  .lcd_data[0].logic=LOW,
+  .lcd_data[0].port=PORTC_INDEX,
+  .lcd_data[0].pin=GPIO_PIN2,
+  .lcd_data[1].direction=GPIO_OUTPUT,
+  .lcd_data[1].logic=LOW,
+  .lcd_data[1].port=PORTC_INDEX,
+  .lcd_data[1].pin=GPIO_PIN3,
+  .lcd_data[2].direction=GPIO_OUTPUT,
+  .lcd_data[2].logic=LOW,
+  .lcd_data[2].port=PORTC_INDEX,
+  .lcd_data[2].pin=GPIO_PIN4,
+  .lcd_data[3].direction=GPIO_OUTPUT,
+  .lcd_data[3].logic=LOW,
+  .lcd_data[3].port=PORTC_INDEX,
+  .lcd_data[3].pin=GPIO_PIN5,
+  
+};
+
+lcd_8bit_t lcd2={
+  .lcd_rs.direction=GPIO_OUTPUT,
+  .lcd_rs.logic=LOW,
+  .lcd_rs.port=PORTC_INDEX,
+  .lcd_rs.pin=GPIO_PIN6,
+  .lcd_en.direction=GPIO_OUTPUT,
+  .lcd_en.logic=LOW,
+  .lcd_en.port=PORTC_INDEX,
+  .lcd_en.pin=GPIO_PIN7,
+  .lcd_data[0].direction=GPIO_OUTPUT,
+  .lcd_data[0].logic=LOW,
+  .lcd_data[0].port=PORTD_INDEX,
+  .lcd_data[0].pin=GPIO_PIN0,
+  .lcd_data[1].direction=GPIO_OUTPUT,
+  .lcd_data[1].logic=LOW,
+  .lcd_data[1].port=PORTD_INDEX,
+  .lcd_data[1].pin=GPIO_PIN1,
+  .lcd_data[2].direction=GPIO_OUTPUT,
+  .lcd_data[2].logic=LOW,
+  .lcd_data[2].port=PORTD_INDEX,
+  .lcd_data[2].pin=GPIO_PIN2,
+  .lcd_data[3].direction=GPIO_OUTPUT,
+  .lcd_data[3].logic=LOW,
+  .lcd_data[3].port=PORTD_INDEX,
+  .lcd_data[3].pin=GPIO_PIN3,
+  .lcd_data[4].direction=GPIO_OUTPUT,
+  .lcd_data[4].logic=LOW,
+  .lcd_data[4].port=PORTD_INDEX,
+  .lcd_data[4].pin=GPIO_PIN4,
+  .lcd_data[5].direction=GPIO_OUTPUT,
+  .lcd_data[5].logic=LOW,
+  .lcd_data[5].port=PORTD_INDEX,
+  .lcd_data[5].pin=GPIO_PIN5,
+  .lcd_data[6].direction=GPIO_OUTPUT,
+  .lcd_data[6].logic=LOW,
+  .lcd_data[6].port=PORTD_INDEX,
+  .lcd_data[6].pin=GPIO_PIN6,
+  .lcd_data[7].direction=GPIO_OUTPUT,
+  .lcd_data[7].logic=LOW,
+  .lcd_data[7].port=PORTD_INDEX,
+  .lcd_data[7].pin=GPIO_PIN7,
+};
+
+ uint_8 customChar1[] = {0x0E,0x0A,0x1B,0x11,0x11,0x11,0x1F,0x00};
+ uint_8 customChar2[] = {0x0E,0x0A,0x1B,0x11,0x11,0x1F,0x1F,0x00};
+ uint_8 customChar3[] = {0x0E,0x0A,0x1B,0x11,0x1F,0x1F,0x1F,0x00};
+ uint_8 customChar4[] = {0x0E,0x0A,0x1B,0x1F,0x1F,0x1F,0x1F,0x00};
+ uint_8 customChar5[] = {0x0E,0x0A,0x1F,0x1F,0x1F,0x1F,0x1F,0x00};
+ uint_8 customChar6[] = {0x0E,0x0E,0x1F,0x1F,0x1F,0x1F,0x1F,0x00};
+uint_8 rightside[] = {
+  0x0C,
+  0x1E,
+  0x1F,
+  0x1F,
+  0x1E,
+  0x1C,
+  0x18,
+  0x10
+};
+uint_8 leftside[] = {
+  0x06,
+  0x0F,
+  0x1F,
+  0x1F,
+  0x0F,
+  0x07,
+  0x03,
+  0x01
+};
+
+int main() { 
+    
+    lcd_4bit_intialize(&lcd1);
+    lcd_8bit_intialize(&lcd2); 
+     
+    while (1){
+  
+         lcd_4bit_send_custom_char(&lcd1,1,20,customChar1,0);
+        __delay_ms(400);
+         lcd_4bit_send_custom_char(&lcd1,1,20,customChar2,0);
+        __delay_ms(400);
+         lcd_4bit_send_custom_char(&lcd1,1,20,customChar3,0);
+        __delay_ms(400);
+         lcd_4bit_send_custom_char(&lcd1,1,20,customChar4,0);
+        __delay_ms(400);
+         lcd_4bit_send_custom_char(&lcd1,1,20,customChar5,0);
+        __delay_ms(400);
+         lcd_4bit_send_custom_char(&lcd1,1,20,customChar6,0);
+        __delay_ms(400);
+        lcd_4bit_send_custom_char(&lcd1,1,5,leftside,1);
+        lcd_4bit_send_custom_char(&lcd1,1,6,rightside,2);
+    }
+   
+   
+    return (EXIT_SUCCESS);
+}
+
+
+
+
+
+

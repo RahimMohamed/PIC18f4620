@@ -1,12 +1,12 @@
 /* 
- * File:   device_config.h
+ * File:   ecu_keypad_cfg.h
  * Author: gaming3
  *
- * Created on October 7, 2023, 10:04 PM
+ * Created on December 9, 2023, 5:29 PM
  */
 
-#ifndef DEVICE_CONFIG_H
-#define	DEVICE_CONFIG_H
+#ifndef ECU_KEYPAD_CFG_H
+#define	ECU_KEYPAD_CFG_H
 
 /*section : Includes  */
 
@@ -18,13 +18,7 @@
 
 /*section : Data Type Declaration  */
 
-
-/*section : Macro Declaration  */
-
-
 /*section :  Functions Declaration  */
-#define _XTAL_FREQ 8000000UL
 
-#endif	/* DEVICE_CONFIG_H */
-
+#endif	/* ECU_KEYPAD_CFG_H */
 

@@ -1,16 +1,16 @@
 /* 
- * File:   std_libraries.h
+ * File:   cfg_relay.h
  * Author: gaming3
  *
- * Created on October 7, 2023, 9:59 PM
+ * Created on November 3, 2023, 2:44 AM
  */
 
-#ifndef STD_LIBRARIES_H
-#define	STD_LIBRARIES_H
+#ifndef CFG_RELAY_H
+#define	CFG_RELAY_H
+
+
 /*section : Includes  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 /*section : Macro Declaration  */
 
 
@@ -25,4 +25,5 @@
 
 /*section :  Functions Declaration  */
 
-#endif	/* STD_LIBRARIES_H */
+#endif	/* CFG_RELAY_H */
+

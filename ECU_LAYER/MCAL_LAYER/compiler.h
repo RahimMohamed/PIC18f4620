@@ -1,16 +1,14 @@
 /* 
- * File:   std_libraries.h
+ * File:   compiler.h
  * Author: gaming3
  *
  * Created on October 7, 2023, 9:59 PM
  */
 
-#ifndef STD_LIBRARIES_H
-#define	STD_LIBRARIES_H
+#ifndef COMPILER_H
+#define	COMPILER_H
 /*section : Includes  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <xc.h>
 /*section : Macro Declaration  */
 
 
@@ -25,4 +23,5 @@
 
 /*section :  Functions Declaration  */
 
-#endif	/* STD_LIBRARIES_H */
+#endif	/* COMPILER_H */
+
