@@ -1,0 +1,51 @@
+/* 
+ * File:   application.c
+ * Author: Ahmed.Elghafar
+ * https://www.linkedin.com/in/ahmedabdelghafarmohammed/
+ * Created on November 28, 2020, 8:43 PM
+ */
+
+#include "main.h"
+
+
+Std_ReturnType ret=E_NOT_OK;
+  
+
+uint_16 adc_res1,adc_res2,adc_res3,adc_res4;
+
+ADC_PIN _adc= {
+  
+    .ADC_InterruptHandler=NULL,
+    .ANT= ADC_AN0,
+    .Acq_Time=TAD_0,
+    .Clock=FOSC_8,
+    .Result_flag=1,
+    .voltage_reference_flag=0,
+};
+
+
+
+int main() { 
+    
+    
+    ADC_Init(&_adc);
+    
+    
+    while (1){
+     
+        ADC_GetConversion(&_adc,ADC_AN0,&adc_res1);
+        ADC_GetConversion(&_adc,ADC_AN1,&adc_res2);
+        ADC_GetConversion(&_adc,ADC_AN2,&adc_res3);
+        ADC_GetConversion(&_adc,ADC_AN3,&adc_res4);
+     
+    }
+   
+   
+    return (EXIT_SUCCESS);
+}
+
+
+
+
+
+
