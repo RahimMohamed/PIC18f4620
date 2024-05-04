@@ -1,0 +1,51 @@
+/* 
+ * File:   application.c
+ * Author: Rahim Mohamed
+ 
+ * Created on November 28, 2020, 8:43 PM
+ */
+
+#include "main.h"
+
+
+Std_ReturnType ret=E_NOT_OK;
+uint_8 counter=0;
+TMR2_t timer={
+  .Timer2_InterruptHandler=NULL,
+  .POS= TMR2_POS_1,
+  .PSA= TMR2_PSA_1,
+  .period=0,
+};
+
+CCPx_t ccp_obj={
+  .CCPx=CCP1_MODULE_CONFIG,
+  .CCPx_InterruptHandler=NULL,
+  .mode=PWM_mode,
+  .PWM_Frequency=20000,
+  .timer2_Pos=1,
+  .pin.direction=GPIO_OUTPUT,
+  .pin.pin=GPIO_PIN2,
+  .pin.port=PORTC_INDEX,
+  .timer2_Prescaler=1,
+};
+
+
+int main() { 
+   
+    TMR2_Init(&timer);
+    CCPx_Init(&ccp_obj);
+   
+    CCP_PWM_Set_Duty(&ccp_obj,0);
+        CCP_PWM_Start(&ccp_obj);
+    
+    while (1){
+    for (counter=0;counter<100;counter+=5){
+        __delay_ms(5);
+       CCP_PWM_Set_Duty(&ccp_obj,counter); 
+    }     
+    }
+       return (EXIT_SUCCESS);
+}
+
+
+

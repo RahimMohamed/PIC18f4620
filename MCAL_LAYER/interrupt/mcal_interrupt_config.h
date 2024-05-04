@@ -43,11 +43,13 @@
 
 #define INTERRUPT_peripheralInterrupt_Enable() (INTCONbits.PEIE=1) // enable all  peripheral interrupts  
 #define INTERRUPT_peripheralInterrupt_Disable() (INTCONbits.PEIE=0) // disable all peripheral interrupts 
-
 #define INTERRUPT_GlobalInterrupts_Enable() (INTCONbits.GIE=1) // enable all  global interrupts  
 #define INTERRUPT_GlobalInterrupts_Disable() (INTCONbits.GIE=0) // disable all global interrupts 
 
 #endif
+
+
+
 
 /*section : Data Type Declaration  */
 

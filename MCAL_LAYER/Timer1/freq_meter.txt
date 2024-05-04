@@ -1,0 +1,72 @@
+/* 
+ * File:   application.c
+ * Author: Ahmed.Elghafar
+ * https://www.linkedin.com/in/ahmedabdelghafarmohammed/
+ * Created on November 28, 2020, 8:43 PM
+ */
+
+#include "main.h"
+
+
+Std_ReturnType ret=E_NOT_OK;
+static void TMR1_ISR (void);
+static void TMR0_ISR (void);
+volatile uint_16 freq=0;
+TMR1_t _counter ={
+  .Timer1_InterruptHandler=NULL,
+  .mode= TMR1_COUNTER_MODE_FLAG, 
+  .RW_flag= TMR1_RW_ONE_FLAG,
+  .PSA=TMR1_PSA_1,
+  .period=0,
+  .Counter_mode=TMR1_SYN_COUNTER_MODE,
+};
+
+Timer0_t _delay_sec={
+  .Timer0_InterruptHandler= TMR0_ISR,
+  .mode=Timer_mode,
+  .Register_Size_flag=TIMER0_16BIT_FLAG,
+  .PSA_flag=TIMER0_PSA_ON_FLAG,
+  .PSA=PSA_32,
+  .period=3036,
+};
+/*
+TMR1_t _generate_500HZ ={
+  .Timer1_InterruptHandler=TMR1_ISR ,
+  .mode= TMR1_TIMER_MODE_FLAG, 
+  .RW_flag= TMR1_RW_ONE_FLAG,
+  .PSA=TMR1_PSA_1,
+  .period=63536, 
+};
+
+led_t led={
+.led_ststus=LOW,
+.pin=GPIO_PIN1,
+.port_name=PORTC_INDEX,  
+};*/
+
+int main() { 
+   
+    Timer0_Init(&_delay_sec);
+    TMR1_Init(&_counter);
+    //TMR1_Init(&_generate_500HZ);
+    //led_initialize(&led);
+    while (1){
+    }
+       return (EXIT_SUCCESS);
+}
+
+
+
+static void TMR0_ISR (void){
+    
+     TMR1_Read_Value(&_counter,&freq);
+     TMR1_Write_Value(&_counter,0x00);
+    
+}
+
+static void TMR1_ISR (void){
+   // led_toggle(&led);
+}
+
+
+

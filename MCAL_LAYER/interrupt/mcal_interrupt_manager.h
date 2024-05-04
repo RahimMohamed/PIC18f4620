@@ -29,5 +29,12 @@ void INT0_ISR (void);
 void INT1_ISR (void);
 void INT2_ISR (void);
 void RB4_ISR  (void);
+void ADC_ISR  (void);
+void Timer0_ISR  (void);
+void TMR1_ISR  (void);
+void TMR2_ISR  (void);
+void TMR3_ISR  (void);
+void CCP1_ISR  (void);
+void CCP2_ISR  (void);
 #endif	/* MCAL_INTERRUPT_MANAGER_H */
 

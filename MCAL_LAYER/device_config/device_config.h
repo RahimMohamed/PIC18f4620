@@ -1,6 +1,6 @@
 /* 
  * File:   device_config.h
- * Author: gaming3
+ * Author: Rahim Mohamed
  *
  * Created on October 7, 2023, 10:04 PM
  */
@@ -19,11 +19,9 @@
 /*section : Data Type Declaration  */
 
 
-/*section : Macro Declaration  */
-
 
 /*section :  Functions Declaration  */
-#define _XTAL_FREQ 8000000UL
+#define _XTAL_FREQ 4000000UL
 
 #endif	/* DEVICE_CONFIG_H */
 

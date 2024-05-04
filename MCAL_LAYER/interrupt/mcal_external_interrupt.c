@@ -103,7 +103,7 @@ void INT2_ISR (void){
     }
     
 }
-
+#if EXTERNAL_INTERRUPT_OnCharge_ENABLE ==1
 void RB4_ISR  (void){
     /*The INT2 external interrupt occurred (flag must be cleared)*/
     EXT_RBx_ClearFlag();
@@ -117,29 +117,7 @@ void RB4_ISR  (void){
 }
 
 
-
-
 /****************************************************************************************************************************/
-
-Std_ReturnType Interrupt_INTx_DeInit (const  interrupt_INTx_t * int_obj){
-    
-    
-       Std_ReturnType ret = E_OK;
-    if (NULL == int_obj ){
-        ret=E_NOT_OK;
-    }
-    else{
-           
-        Interrupt_INTx_Disable(int_obj);
-       
-    }
-    return ret;
-    
-    
-    
-}
-/****************************************************************************************************************************/
-
 
 Std_ReturnType Interrupt_RBx_Init   (const  interrupt_RBx_t * int_obj){
     
@@ -193,6 +171,11 @@ Std_ReturnType Interrupt_RBx_Init   (const  interrupt_RBx_t * int_obj){
     
     
 }
+
+
+
+
+
 /****************************************************************************************************************************/
 
 Std_ReturnType Interrupt_RBx_DeInit (const  interrupt_RBx_t * int_obj){
@@ -210,6 +193,30 @@ Std_ReturnType Interrupt_RBx_DeInit (const  interrupt_RBx_t * int_obj){
     
     
 }
+#endif
+
+/****************************************************************************************************************************/
+
+Std_ReturnType Interrupt_INTx_DeInit (const  interrupt_INTx_t * int_obj){
+    
+    
+       Std_ReturnType ret = E_OK;
+    if (NULL == int_obj ){
+        ret=E_NOT_OK;
+    }
+    else{
+           
+        Interrupt_INTx_Disable(int_obj);
+       
+    }
+    return ret;
+    
+    
+    
+}
+
+
+
 
 
 /****************************************************************************************************************************/

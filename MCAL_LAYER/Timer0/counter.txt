@@ -1,0 +1,69 @@
+/* 
+ * File:   application.c
+ * Author: Ahmed.Elghafar
+ * https://www.linkedin.com/in/ahmedabdelghafarmohammed/
+ * Created on November 28, 2020, 8:43 PM
+ */
+
+#include "main.h"
+
+
+Std_ReturnType ret=E_NOT_OK;
+  
+static void TMR0_delay_ISR (void);
+
+uint_8 counter=0;
+
+Timer0_t Tmr0_counter={
+    .Timer0_InterruptHandler=TMR0_delay_ISR,
+    .mode=Counter_mode,
+    .Register_Size_flag=TIMER0_16BIT_FLAG,
+    .PSA_flag=TIMER0_PSA_OFF_FLAG,
+    .Edge_flag=TIMER0_RISING_FLAG,
+    .period=0,
+};
+
+
+
+
+   lcd_4bit_t lcd={
+  .lcd_rs.direction=GPIO_OUTPUT,
+  .lcd_rs.logic=LOW,
+  .lcd_rs.port=PORTD_INDEX,
+  .lcd_rs.pin=GPIO_PIN0,
+  .lcd_en.direction=GPIO_OUTPUT,
+  .lcd_en.logic=LOW,
+  .lcd_en.port=PORTD_INDEX,
+  .lcd_en.pin=GPIO_PIN1,
+  .lcd_data[0].direction=GPIO_OUTPUT,
+  .lcd_data[0].logic=LOW,
+  .lcd_data[0].port=PORTD_INDEX,
+  .lcd_data[0].pin=GPIO_PIN2,
+  .lcd_data[1].direction=GPIO_OUTPUT,
+  .lcd_data[1].logic=LOW,
+  .lcd_data[1].port=PORTD_INDEX,
+  .lcd_data[1].pin=GPIO_PIN3,
+  .lcd_data[2].direction=GPIO_OUTPUT,
+  .lcd_data[2].logic=LOW,
+  .lcd_data[2].port=PORTD_INDEX,
+  .lcd_data[2].pin=GPIO_PIN4,
+  .lcd_data[3].direction=GPIO_OUTPUT,
+  .lcd_data[3].logic=LOW,
+  .lcd_data[3].port=PORTD_INDEX,
+  .lcd_data[3].pin=GPIO_PIN5,
+  
+};
+   
+int main() { 
+   
+    Timer0_Init(&Tmr0_counter);
+    
+    while (1){
+    
+        
+        Timer0_Read_Value(&Tmr0_counter,&counter);
+    }
+   
+   
+    return (EXIT_SUCCESS);
+}

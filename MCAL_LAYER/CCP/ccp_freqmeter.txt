@@ -1,0 +1,82 @@
+/* 
+ * File:   application.c
+ * Author: Rahim Mohamed
+ 
+ * Created on November 28, 2020, 8:43 PM
+ */
+
+#include "main.h"
+
+
+Std_ReturnType ret=E_NOT_OK;
+
+static void TMR3_ISR (void);
+static void CPP1_ISR (void);
+
+volatile uint_8 CCP1_Second_Copture_Flag = 0;
+uint_16 Second_Copture = 0;
+volatile uint_32 Timer3_OverFlow = 0;
+uint_32 Total_Period_MicroSecond = 0,Freq=0;
+TMR3_t Timer={
+  .Timer3_InterruptHandler=TMR3_ISR,
+  .mode=TMR3_TIMER_MODE_FLAG,
+  .period=0,
+  .RW_flag=TMR3_RW_ONE_FLAG,
+  .PSA=TMR3_PSA_1,  
+};
+
+CCPx_t ccp1_cap={
+  .CCPx=CCP1_MODULE_CONFIG,
+  .CCPx_InterruptHandler=CPP1_ISR,
+  .mode=Capture_mode,
+  .sub_mode=CCPPx_CATURE_MODE_RISING_EDGE,
+  .timer_mode=Timer3_Config_For_Module,
+  .pin.direction=GPIO_INPUT,
+  .pin.pin=GPIO_PIN2,
+  .pin.port=PORTC_INDEX,
+};
+
+
+
+
+int main() { 
+   
+   
+   TMR3_Init(&Timer);
+   CCPx_Init(&ccp1_cap);
+   
+    
+    while (1){
+     if(CCP1_Second_Copture_Flag == 2){
+            Total_Period_MicroSecond = (Timer3_OverFlow * 65536) + Second_Copture;
+            Freq = (uint_32)(1 / (Total_Period_MicroSecond / 1000000.0));
+            CCP1_Second_Copture_Flag = 0;
+        }
+    }
+       return (EXIT_SUCCESS);
+}
+
+
+
+
+
+static void TMR3_ISR (void){
+ Timer3_OverFlow++;  
+}
+static void CPP1_ISR (void){
+  Std_ReturnType ret = E_NOT_OK;
+    static uint_8 CCP1_Interrupt_Flag = 0;
+    
+    CCP1_Interrupt_Flag++;
+    CCP1_Second_Copture_Flag++;
+    if(CCP1_Interrupt_Flag == 1){
+        ret = TMR3_Write_Value(&Timer,0);
+    }
+    else if(CCP1_Interrupt_Flag == 2){
+        Timer3_OverFlow = 0;
+        CCP1_Interrupt_Flag = 0;
+        ret = CCPx_Capture_Mode_Read_Value(&ccp1_cap,&Second_Copture);
+    }
+}
+
+

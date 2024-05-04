@@ -17,9 +17,13 @@
 
 #define INTERRUPT_PRIORITY_LEVELS_ENABLE                    0
 #define EXTERNAL_INTERRUPT_INTx_ENABLE                      1
-#define EXTERNAL_INTERRUPT_OnCharge_ENABLE                  1
-
-
+#define EXTERNAL_INTERRUPT_OnCharge_ENABLE                  0
+#define ADC_Enternal_INTERRUPT_ENABLE                       1
+#define Timer0_INTERRUPT_ENABLE                             1
+#define TMR1_INTERRUPT_ENABLE                               1
+#define TMR2_INTERRUPT_ENABLE                               1
+#define TMR3_INTERRUPT_ENABLE                               1
+#define CCPx_INTERRUPT_ENABLE                               1
 /*section : Macro Declaration  */
 
 

@@ -1,0 +1,42 @@
+/* 
+ * File:   application.c
+ * Author: Ahmed.Elghafar
+ * https://www.linkedin.com/in/ahmedabdelghafarmohammed/
+ * Created on November 28, 2020, 8:43 PM
+ */
+
+#include "main.h"
+
+
+Std_ReturnType ret=E_NOT_OK;
+static void TMR2_ISR (void);
+volatile uint_16 timer2_flag=0;
+TMR2_t _delsy ={
+  .Timer2_InterruptHandler=TMR2_ISR,
+  .PSA=TMR2_PSA_16,
+  .POS=TMR2_POS_10,
+  .period=250,
+};
+
+
+
+
+int main() { 
+   
+   
+    TMR2_Init(&_delsy);
+    
+    while (1){
+    }
+       return (EXIT_SUCCESS);
+}
+
+
+
+static void TMR2_ISR (void){
+    
+  timer2_flag++;
+    
+}
+
+
