@@ -24,6 +24,9 @@
 #define TMR2_INTERRUPT_ENABLE                               1
 #define TMR3_INTERRUPT_ENABLE                               1
 #define CCPx_INTERRUPT_ENABLE                               1
+#define EUSART_TX_INTERRUPT_ENABLE                          1
+#define EUSART_RX_INTERRUPT_ENABLE                          1
+#define MSSP_I2C_INTERRUPT_FEATURE_ENABLE                   1
 /*section : Macro Declaration  */
 
 

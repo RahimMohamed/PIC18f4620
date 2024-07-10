@@ -1,0 +1,63 @@
+/* 
+ * File:   application.c
+ * Author: Rahim Mohamed
+ 
+ * Created on November 28, 2020, 8:43 PM
+ */
+
+#include "main.h"
+
+
+Std_ReturnType ret=E_NOT_OK;
+void EUSART_RxDefaultInterruptHandler (void);
+usart_t _obj={
+  .baudrate=9600,
+  .baudrate_gen_gonfig=BAUDRATE_ASYN_8BIT_lOW_SPEED,
+  .usart_tx_cfg.usart_tx_enable = EUSART_ASYNCHRONOUS_TX_ENABLE,
+  .usart_tx_cfg.usart_tx_interrupt_enable = EUSART_ASYNCHRONOUS_INTERRUPT_TX_ENABLE,
+  .usart_tx_cfg.usart_tx_9bit_enable = EUSART_ASYNCHRONOUS_9Bit_TX_DISABLE,
+  .usart_rx_cfg.usart_rx_enable = EUSART_ASYNCHRONOUS_RX_ENABLE,
+  .usart_rx_cfg.usart_rx_interrupt_enable = EUSART_ASYNCHRONOUS_INTERRUPT_RX_ENABLE,
+  .usart_rx_cfg.usart_rx_9bit_enable = EUSART_ASYNCHRONOUS_9Bit_RX_DISABLE,
+  .EUSART_TxDefaultInterruptHandler = NULL,
+  .EUSART_RxDefaultInterruptHandler = EUSART_RxDefaultInterruptHandler,
+  .EUSART_FramingErrorHandler = NULL,
+  .EUSART_OverrunErrorHandler = NULL,   
+};
+
+volatile uint_8 value;
+led_t led1={.led_ststus=LOW,.port_name=PORTD_INDEX,.pin=GPIO_PIN0};
+int main() { 
+   
+   
+  EUSART_ASYNC_Init(&_obj);
+  led_initialize(&led1);
+  //EUSART_ASYNC_WriteByteBlocking('a');
+    while (1){
+    
+    }
+       return (EXIT_SUCCESS);
+}
+
+
+
+
+void EUSART_RxDefaultInterruptHandler (void){
+    Std_ReturnType ret = E_NOT_OK;
+    EUSART_ASYNC_ReadByteNonBlocking(&value);
+    switch(value){
+        case 'a':
+            led_turn_on(&led1);
+            EUSART_ASYNC_WriteByteBlocking('c');
+            __delay_ms(500);
+            break;
+        case 'b': 
+            led_turn_off(&led1);
+           EUSART_ASYNC_WriteByteBlocking('d');
+           __delay_ms(500);
+            break;
+                 
+    }
+}
+
+

@@ -85,6 +85,19 @@ void __interrupt() InterruptManger (void){
   if ((INTERRUPT_ENABLE ==PIE2bits.CCP2IE )&&(INTERRUPT_OCCUR ==PIR2bits.CCP2IF)){
       CCP2_ISR();
     }
+    if ((INTERRUPT_ENABLE ==PIE1bits.TXIE )&&(INTERRUPT_OCCUR ==PIR1bits.TXIF)){
+      EUSART_TX_ISR();
+    }
+    if ((INTERRUPT_ENABLE ==PIE1bits.RCIE )&&(INTERRUPT_OCCUR ==PIR1bits.RCIF)){
+      EUSART_RX_ISR();
+    }
+    if((INTERRUPT_ENABLE == PIE1bits.SSPIE) && (INTERRUPT_OCCUR == PIR1bits.SSPIF)){
+        MSSP_I2C_ISR();
+    }
+    else{ /* Nothing */ }
+    if((INTERRUPT_ENABLE == PIE2bits.BCLIE) && (INTERRUPT_OCCUR == PIR2bits.BCLIF)){
+        MSSP_I2C_BC_ISR();
+    }
     
     /*=====================================PORTB  External on change Interrupt start=============================================*/
 #if EXTERNAL_INTERRUPT_OnCharge_ENABLE ==1   

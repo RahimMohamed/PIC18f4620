@@ -127,8 +127,74 @@
 #endif
 #endif
 
+/*--------------------------------------------------EUSART  TX---------------------------------------------------*/
+
+#if EUSART_TX_INTERRUPT_ENABLE  == 1
+
+#define EUSART_TX_InterruptEnable()       (PIE1bits.TXIE=1) // enable EUSART TX interrupt bit  
+#define EUSART_TX_InterruptDisable()      (PIE1bits.TXIE=0) // disable EUSART TX interrupt  bit 
+ 
+
+#if INTERRUPT_PRIORITY_LEVELS_ENABLE==INERRUPT_FEAUTURE_ENABLE 
+
+#define EUSART_TX_Interrupt_HighPrioritySet()  (IPR1bits.TXIP=1) // Set EUSART TX interrupt  to be high Priority  
+#define EUSART_TX_Interrupt_LowPrioritySet()   (IPR1bits.TXIP=0) // Set EUSART TX interrupt  to be low Priority
+
+#endif
 
 
+
+#endif
+
+
+/*--------------------------------------------------EUSART  RX---------------------------------------------------*/
+
+#if EUSART_RX_INTERRUPT_ENABLE  == 1
+
+#define EUSART_RX_InterruptEnable()       (PIE1bits.RCIE=1) // enable EUSART RX interrupt bit  
+#define EUSART_RX_InterruptDisable()      (PIE1bits.RCIE=0) // disable EUSART RX interrupt  bit 
+
+
+#if INTERRUPT_PRIORITY_LEVELS_ENABLE==INERRUPT_FEAUTURE_ENABLE 
+
+#define EUSART_RX_Interrupt_HighPrioritySet()  (IPR1bits.RCIP=1) // Set EUSART RX interrupt  to be high Priority  
+#define EUSART_RX_Interrupt_LowPrioritySet()   (IPR1bits.RCIP=0) // Set EUSART RX interrupt  to be low Priority
+
+#endif
+
+
+
+#endif
+
+/*--------------------------------------------------I2C---------------------------------------------------*/
+#if MSSP_I2C_INTERRUPT_FEATURE_ENABLE   ==   1
+
+/* This routine clears the interrupt enable for the MSSP I2C Module */
+#define MSSP_I2C_InterruptDisable()         (PIE1bits.SSPIE = 0)
+#define MSSP_I2C_BUS_COL_InterruptDisable() (PIE2bits.BCLIE = 0)
+/* This routine sets the interrupt enable for the MSSP I2C Module */
+#define MSSP_I2C_InterruptEnable()          (PIE1bits.SSPIE = 1)
+#define MSSP_I2C_BUS_COL_InterruptEnable()  (PIE2bits.BCLIE = 1)
+/* This routine clears the interrupt flag for the MSSP I2C Module */
+#define MSSP_I2C_InterruptFlagClear()         (PIR1bits.SSPIF = 0)
+#define MSSP_I2C_BUS_COL_InterruptFlagClear() (PIR2bits.BCLIF = 0)
+
+
+#if INTERRUPT_PRIORITY_LEVELS_ENABLE==INERRUPT_FEAUTURE_ENABLE 
+
+/* This routine set the MSSP I2C Module Interrupt Priority to be High priority */
+#define MSSP_I2C_HighPrioritySet()          (IPR1bits.SSPIP = 1)
+#define MSSP_I2C_BUS_COL_HighPrioritySet()  (IPR2bits.BCLIP = 1)
+/* This routine set the MSSP I2C Module Interrupt Priority to be Low priority */
+#define MSSP_I2C_LowPrioritySet()           (IPR1bits.SSPIP = 0)
+#define MSSP_I2C_BUS_COL_LowPrioritySet()   (IPR2bits.BCLIP = 0)
+
+
+#endif
+
+
+
+#endif
 /*section : Data Type Declaration  */
 
 
